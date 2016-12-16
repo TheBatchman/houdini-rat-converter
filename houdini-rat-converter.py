@@ -121,9 +121,7 @@ class MainWindow(QtGui.QWidget):
                 # Execute iconvert command
                 os.system(command)
                 
-
-        else:
-            # Message box to warn no path has been set
+        else:            # Message box to warn no path has been set
             QtGui.QMessageBox.information(self, "Heads up!", "No path was set")
             
 
