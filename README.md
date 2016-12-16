@@ -1,5 +1,7 @@
-# houdini-rat-converter
-Pyside environment for converting texture files to Mantra's native RAT file
+# Houdini .RAT converter
+Pyside environment for converting an entire folder with texture files to Mantra's native RAT file
+
+Saves the .rat files next to the original files
 
 **Only linux tested**
 &nbsp;
