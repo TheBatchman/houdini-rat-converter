@@ -1,0 +1,17 @@
+# houdini-rat-converter
+Pyside environment for converting texture files to Mantra's native RAT file
+
+**Only linux tested**
+&nbsp;
+
+# Usage
+1. Open Houdini
+2. Right click on a empty spot in the shelf
+3. New Tool
+4. Copy the contents of "houdini-rat-converter.py" in the tab "Script"
+5. Accept
+
+# Todo (by priority)
+* Fix windows and mac version (file structure untested)
+* Check if .rat version already exists and not overwrite
+* Make user able to select between entire 
