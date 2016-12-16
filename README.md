@@ -13,5 +13,9 @@ Pyside environment for converting texture files to Mantra's native RAT file
 
 # Todo (by priority)
 * Fix windows and mac version (file structure untested)
-* Check if .rat version already exists and not overwrite
-* Make user able to select between entire 
+* Check if .rat version already exists and not overwrite and skip
+* Make user able to select between entire folder or select images
+* Let user select recursive or not
+* Let user select filetype (e.g. jpg, tiff, tga, exr) to convert from (one or multiple)
+* A way to show progress
+* A way to show when done
