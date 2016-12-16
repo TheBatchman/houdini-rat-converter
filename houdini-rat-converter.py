@@ -13,26 +13,20 @@ class MainWindow(QtGui.QWidget):
         # Config browse button
         browse_button = QtGui.QPushButton('Browse')
         browse_button.setFocusPolicy(QtCore.Qt.NoFocus)
-        browse_button.move(20, 20)
         
         # Connect button click with showBrowseFolder function
         browse_button.clicked.connect(self.showBrowseFolder)
-        
-        #self.connect(browse_button, QtCore.SIGNAL('clicked()'), self.showBrowseFolder)
-        
+                
         # Config the Choose Image
         choose_label = QtGui.QLabel()
         choose_label.setText("Choose Image Folder")
-        #choose_label.move(150, 100)
         
         # Config the browse label
         self.label = QtGui.QLabel("path/to/folder")
-        self.label.move(130, 20)
         
         # Config convert button
         convert_button = QtGui.QPushButton('Convert')
         convert_button.setFocusPolicy(QtCore.Qt.NoFocus)
-        #browse_button.move(20, 20)
         
         # Connect button click with showBrowseFolder function
         convert_button.clicked.connect(self.startConvertion)
@@ -73,7 +67,7 @@ class MainWindow(QtGui.QWidget):
                 executable = "iconvert "
                 
                 # Linux houdini root path is /opt/hfs{version}/houdini
-                # We need to slash of /houdini
+                # We need to slash /houdini
                 root = root.rpartition("/")[0]
             
             # Filepath for windows untested
