@@ -1,4 +1,4 @@
-import platform, os
+import platform, os, os.path
 from PySide import QtCore, QtGui
 
 class MainWindow(QtGui.QWidget):
@@ -56,24 +56,30 @@ class MainWindow(QtGui.QWidget):
         if self.path:
         
             # Locate Houdini root path
-            root = hou.houdiniPath()[2]
+            root = None
             binary_folder = None
             executable = None
+            slash = None
         
             # Determine OS filepaths
             if platform.system() == "Linux":
-            
-                binary_folder = "/bin/"
+                
+                root = hou.houdiniPath()[2]
+                slash = "/"
+                binary_folder = slash + "bin" + slash
                 executable = "iconvert "
                 
                 # Linux houdini root path is /opt/hfs{version}/houdini
                 # We need to slash /houdini
-                root = root.rpartition("/")[0]
+                root = root.rpartition(slash)[0]
             
             # Filepath for windows untested
             elif platform.system() == "Windows":
-            
-                inary_folder = "\\bin\\"
+                
+                root = hou.houdiniPath()[3]
+                root.replace("/", "\\")
+                slash = "\\"
+                binary_folder = slash
                 executable = "iconvert.exe "
             
             # Filepath for Mac untested
@@ -109,13 +115,26 @@ class MainWindow(QtGui.QWidget):
                 
                 # Output format
                 output_format = ".rat"
-            
-                command = "%s%s%s %s%s%s" % (iconvert, self.path, file_name, self.path, file_base, output_format)
                 
-                # Execute iconvert command
-                os.system(command)
+                # Simplify output file
+                output_file = self.path + file_base + output_format
                 
-        else:            # Message box to warn no path has been set
+                # Simplify input file
+                input_file = iconvert + self.path + file_name
+                
+                # Check if file exists
+                if os.path.isfile(output_file) == False:
+                
+                    command = "%s %s" % (input_file, output_file)
+                    
+                    # Execute iconvert command
+                    os.system(command)
+                    
+                else:
+                
+                    print "%s already exists, skipped" % output_file
+                
+        else:   # Message box to warn no path has been set
             QtGui.QMessageBox.information(self, "Heads up!", "No path was set")
             
 
