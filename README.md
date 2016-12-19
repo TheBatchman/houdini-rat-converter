@@ -3,7 +3,7 @@ Pyside environment for converting an entire folder with texture files to Mantra'
 
 Saves the .rat files next to the original files
 
-**Only linux tested**
+**Only Linux & Windows tested**
 &nbsp;
 
 # Usage
