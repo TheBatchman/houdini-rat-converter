@@ -73,7 +73,7 @@ class MainWindow(QtGui.QWidget):
                 # We need to slash /houdini
                 root = root.rpartition(slash)[0]
             
-            # Filepath for windows untested
+            # Filepath for windows
             elif platform.system() == "Windows":
                 
                 root = hou.houdiniPath()[3]
