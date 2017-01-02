@@ -55,40 +55,9 @@ class MainWindow(QtGui.QWidget):
     
         if self.path:
         
-            # Locate Houdini root path
-            root = None
-            binary_folder = None
-            executable = None
-            slash = None
-        
-            # Determine OS filepaths
-            if platform.system() == "Linux":
-                
-                root = hou.houdiniPath()[2]
-                slash = "/"
-                binary_folder = slash + "bin" + slash
-                executable = "iconvert "
-                
-                # Linux houdini root path is /opt/hfs{version}/houdini
-                # We need to slash /houdini
-                root = root.rpartition(slash)[0]
-            
-            # Filepath for windows
-            elif platform.system() == "Windows":
-                
-                root = hou.houdiniPath()[3]
-                root.replace("/", "\\")
-                slash = "\\"
-                binary_folder = slash
-                executable = "iconvert.exe "
-            
-            # Filepath for Mac untested
-            elif platform.system() == "Darwin":
-            
-                print "mac"
-                
-            # iconvert executable string
-            iconvert = root + binary_folder + executable
+            # Pass binary name into function. (any binary inside the houdini\bin folder)
+            # This way you can grab any binary in that folder and reuse the function
+            iconvert = getBinary("iconvert")
             
             getDirInfo = QtCore.QDir(self.path)
             
@@ -138,5 +107,44 @@ class MainWindow(QtGui.QWidget):
             QtGui.QMessageBox.information(self, "Heads up!", "No path was set")
             
 
+def getBinary(binary):
+
+    # Locate Houdini root path
+    root = None
+    binary_folder = None
+    executable = None
+    slash = None
+    
+    # Determine OS filepaths
+    if platform.system() == "Linux":
+        
+        root = hou.houdiniPath()[2]
+        slash = "/"
+        binary_folder = slash + "bin" + slash
+        executable = binary + " "
+        
+        # Linux houdini root path is /opt/hfs{version}/houdini
+        # We need to slash /houdini
+        root = root.rpartition(slash)[0]
+    
+    # Filepath for windows
+    elif platform.system() == "Windows":
+        
+        root = hou.houdiniPath()[3]
+        root.replace("/", "\\")
+        slash = "\\"
+        binary_folder = slash
+        executable = binary + ".exe "
+    
+    # Filepath for Mac untested
+    elif platform.system() == "Darwin":
+    
+        print "mac"
+    
+    # iconvert executable string
+    binary_string = root + binary_folder + executable  
+    
+    return(binary_string)
+            
 dialog = MainWindow()
 dialog.show()
