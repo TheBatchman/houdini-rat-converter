@@ -50,6 +50,8 @@ class MainWindow(QtGui.QWidget):
         if path:
             self.label.setText(path)
             self.path = path
+        elif:
+            print "error: path variable not set"
             
     def startConvertion(self):
     
@@ -141,7 +143,7 @@ def getBinary(binary):
     
         print "mac"
     
-    # iconvert executable string
+    # binary executable string
     binary_string = root + binary_folder + executable  
     
     return(binary_string)
