@@ -50,7 +50,7 @@ class MainWindow(QtGui.QWidget):
         if path:
             self.label.setText(path)
             self.path = path
-        elif:
+        else:
             print "error: path variable not set"
             
     def startConvertion(self):
@@ -142,6 +142,10 @@ def getBinary(binary):
     elif platform.system() == "Darwin":
     
         print "mac"
+        
+    else:
+        
+        print "Unable to determine OS"
     
     # binary executable string
     binary_string = root + binary_folder + executable  
